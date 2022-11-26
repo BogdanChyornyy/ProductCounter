@@ -14,11 +14,6 @@
                                 WidthRequest="250"
                                 HeightRequest="250"
                                 />
-        <Button Text="scan"
-                x:Name="scanBtn"/>
-        <Label x:Name="label"
-               HeightRequest="30"
-               />
         <Label Text="GO ON"
                x:Name="scanResultText"
                HeightRequest="30"

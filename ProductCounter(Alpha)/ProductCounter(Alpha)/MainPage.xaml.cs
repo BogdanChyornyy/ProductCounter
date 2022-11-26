@@ -12,8 +12,6 @@ namespace ProductCounter_Alpha_
 {
     public partial class MainPage : ContentPage
     {
-        private string _link;
-
         public MainPage()
         {
             InitializeComponent();
