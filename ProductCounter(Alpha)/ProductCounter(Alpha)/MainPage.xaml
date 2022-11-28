@@ -3,22 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProductCounter_Alpha_.MainPage"
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
-    
+
     <FlexLayout Padding="5"
-                Direction="Column"
                 AlignItems="Center"
-                JustifyContent="SpaceEvenly">
-        
-        <zxing:ZXingScannerView IsScanning="True"
-                                OnScanResult="ZXingScannerViev_OnScanResult"
-                                WidthRequest="250"
-                                HeightRequest="250"
-                                />
-        <Label Text="GO ON"
-               x:Name="scanResultText"
-               HeightRequest="30"
-               />
-        
+                JustifyContent="SpaceEvenly"
+                Direction="Column">
+        <StackLayout
+            Orientation="Horizontal"
+            Padding="5">
+            <Frame
+            x:Name="conMessFrame"
+            BackgroundColor="Red"
+            CornerRadius="10">
+                <Label
+                    x:Name="connectionMessage"
+                    Text="no any connections"
+                    FontSize="Title"
+                    HorizontalOptions="Center">
+                </Label>
+            </Frame>
+
+            <Button
+                CornerRadius="10"
+                BackgroundColor="DarkGray"
+                Text="TRY"
+                Clicked="buttonTry_Clicked">
+            </Button>
+        </StackLayout>
+
+        <StackLayout>
+            <zxing:ZXingScannerView 
+                IsScanning="True"
+                OnScanResult="ZXingScannerViev_OnScanResult"
+                WidthRequest="250"
+                HeightRequest="250"/>
+
+            <Frame
+                HasShadow="True"
+                BorderColor="Gray">
+                <Label
+                    x:Name="quaryResult"
+                    Text="результат запроса"
+                    HorizontalOptions="Center">
+                </Label>
+            </Frame>
+        </StackLayout>
+
     </FlexLayout>
     
 </ContentPage>
