@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySqlConnector;
-using ProductCounter_Alpha_.DataBase;
 
-namespace ProductCounter_Alpha_.DataBase
+namespace ProductCounter_Alpha_
 {
     class DBUtils
     {
