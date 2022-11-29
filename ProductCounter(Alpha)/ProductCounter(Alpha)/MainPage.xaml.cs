@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using testDBAddingToMobile;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using ZXing;
 using ZXing.QrCode.Internal;
@@ -23,24 +23,25 @@ namespace ProductCounter_Alpha_
         {
             DBOperator dBOperator = new DBOperator();
 
-            dBOperator.DBConnectCall();
-            connectionMessage.Text = Convert.ToString("Connection successful!");
+            connectionMessage.Text = dBOperator.DBConnectCall();
             conMessFrame.BackgroundColor = Color.ForestGreen;
         }
 
         private void ZXingScannerViev_OnScanResult(ZXing.Result result)
         {
+            Flashlight.TurnOnAsync();
             DBOperator dBOperator = new DBOperator();
             Device.BeginInvokeOnMainThread(() =>
             {
-                string QuaryOperResult = dBOperator.QuerySenderCall(Convert.ToString(result));
-                quaryResult.Text = Convert.ToString(QuaryOperResult);
+                string[] QuaryOperResult = dBOperator.QuerySenderCall(Convert.ToString(result));
+                quaryResult.Text = Convert.ToString(QuaryOperResult[0]);
+                remind.Text = Convert.ToString(QuaryOperResult[1]);
             });
         }
 
         public void Message(string position)
         {
-            quaryResult.Text = Convert.ToString(position); 
+            Alerts(position);
         }
 
 
@@ -48,6 +49,11 @@ namespace ProductCounter_Alpha_
         {
             await DisplayAlert("Topic", message, "OK");
         }
+
+        //private async void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    await Flashlight.TurnOnAsync();
+        //}
     }
 }
 

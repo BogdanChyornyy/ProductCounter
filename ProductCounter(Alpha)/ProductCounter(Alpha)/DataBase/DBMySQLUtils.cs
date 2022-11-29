@@ -9,7 +9,7 @@ using MySqlConnector;
 
 //MySql.Data.MySqlClient;
 
-namespace ProductCounter_Alpha_.DataBase
+namespace ProductCounter_Alpha_
 {
     class DBMySQLUtils
     {

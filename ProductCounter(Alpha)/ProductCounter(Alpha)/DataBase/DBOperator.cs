@@ -6,61 +6,74 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using MySqlConnector;
-//using MySql.Data.MySqlClient;
 using System.Net.NetworkInformation;
-using ProductCounter_Alpha_.DataBase;
 using ZXing.QrCode.Internal;
 using ZXing;
-using ProductCounter_Alpha_;
+using Xamarin.Essentials;
 
-namespace testDBAddingToMobile
+namespace ProductCounter_Alpha_
 {
     class DBOperator
     {
-        public string QuerySenderCall(string barCode)
+        private MySqlConnection _conn = DBUtils.GetDBConnection();
+        private string _sqlQuery;
+        private string[] _extractedPosition = new string[2];
+        public string message;
+
+        public string[] QuerySenderCall(string barCode)
         {
-            string example = QuerySender(barCode);
+            string[] example = QuerySender(barCode);
             return example;
         }
 
-        public void DBConnectCall()
+        public string DBConnectCall()
         {
-            DataBaseConnect();
+            return DataBaseConnect();
         }
 
 
-        private string QuerySender(string barCode)
+        private string[] QuerySender(string barCode)
         {
-            string sql = $"SELECT position FROM Positions WHERE barcode = {barCode}";
-
-            MySqlConnection conn = DBUtils.GetDBConnection();
-
-            conn.Open();
-
-            MySqlCommand command = new MySqlCommand(sql, conn);
-
-            string name = command.ExecuteScalar().ToString(); //Executor
-
-            conn.Close();
-
-            return name;
-        }
-
-
-        private void DataBaseConnect()
-        {
-            MySqlConnection conn = DBUtils.GetDBConnection();
-            MainPage mainPage = new MainPage();
-
+            _conn.Open();
             try
             {
-                conn.Open();
-                conn.Close();
+                _sqlQuery = $"SELECT position FROM Positions WHERE barcode = {barCode + "    "}";
+                MySqlCommand command = new MySqlCommand(_sqlQuery, _conn);
+                _extractedPosition[0] = command.ExecuteScalar().ToString();
+                
+                _sqlQuery = $"SELECT count FROM Positions WHERE barcode = {barCode + "    "}";
+                command = new MySqlCommand(_sqlQuery, _conn);
+                _extractedPosition[1] = command.ExecuteScalar().ToString();
             }
-            catch (Exception e)
+            catch (NullReferenceException)
             {
-                mainPage.Alerts(e.Message);
+                _extractedPosition[0] = "Штрих-код не существует";
             }
+            finally
+            {
+                _conn.Close();
+            }
+            return _extractedPosition;
+        }
+
+
+        private string DataBaseConnect()
+        {
+            string excMess = "Соединение установлено!";
+            try
+            {
+                _conn.Open();
+                _conn.Close();
+            }
+            catch (Exception)
+            {
+                excMess = "Соединение не установлено!";
+            }
+            finally
+            {
+                message = excMess;
+            }
+            return message;
         }
     }
 }
