@@ -7,54 +7,57 @@
     <FlexLayout Padding="5"
                 AlignItems="Center"
                 JustifyContent="SpaceAround"
-                Direction="Column">
-        <FlexLayout
+                Direction="Column"
+                x:Name="mainLayout">
+        <StackLayout
             x:Name="dbIndicatorLayout"
-            JustifyContent="SpaceBetween"
-            Direction="Column"
-            AlignItems="Center"
-            HeightRequest="130">
+            Orientation="Horizontal"
+            HorizontalOptions="CenterAndExpand"
+            WidthRequest="150"
+            HeightRequest="40">
             
-            <Frame
-                x:Name="conMessFrame"
-                BackgroundColor="Red"
-                CornerRadius="10">
-                    <Label
-                        x:Name="connectionMessage"
-                        Text="Нет соединений"
-                        FontSize="Title"
-                        HorizontalTextAlignment="Center">
-                    </Label>
-            </Frame>
-
             <Button
                 CornerRadius="10"
                 BackgroundColor="DarkGray"
                 Text="проверка соединения"
                 Clicked="buttonTry_Clicked">
             </Button>
-        </FlexLayout>
+
+            <Frame
+                x:Name="conMessFrame"
+                BackgroundColor="Red"
+                CornerRadius="10"
+                WidthRequest="10"
+                HeightRequest="10">
+            </Frame>
+        </StackLayout>
 
         <StackLayout>
             <zxing:ZXingScannerView 
                 IsScanning="True"
                 OnScanResult="ZXingScannerViev_OnScanResult"
                 WidthRequest="350"
-                HeightRequest="150"/>
+                HeightRequest="150"
+                />
             
             <Frame
                 HasShadow="True"
-                BorderColor="Gray">
+                BorderColor="Gray"
+                Margin="0, 20, 0, 20">
                 <Label
                     x:Name="quaryResult"
                     Text="Наименование позиции"
-                    HorizontalOptions="Center">
+                    HorizontalOptions="Center"
+                    FontSize ="18"
+                    FontAttributes="Bold"
+                    FontFamily="">
                 </Label>
             </Frame>
 
             <Frame
                 BackgroundColor="LightGray">
                 <Entry
+                    x:Name="quantityFact"
                 Placeholder="Введите количество"
                 HorizontalOptions="Center">
                 </Entry>
@@ -89,6 +92,25 @@
                 </Frame>
 
             </FlexLayout>
+        </StackLayout>
+
+        <StackLayout
+            Orientation="Horizontal">
+            <Button
+            x:Name="countBtn"
+            BackgroundColor="LightGray"
+            CornerRadius="10"
+            Text="Считать"
+            Clicked="countBtn_Clicked">
+            </Button>
+
+            <Button
+                x:Name="exactlyBtn"
+                BackgroundColor="LightGray"
+                CornerRadius="10"
+                Text="Ровно"
+                Clicked="exactlyBtn_Clicked">
+            </Button>
         </StackLayout>
 
     </FlexLayout>

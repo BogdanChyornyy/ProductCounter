@@ -14,6 +14,8 @@ namespace ProductCounter_Alpha_
 {
     public partial class MainPage : ContentPage
     {
+        private string[] _quaryOperResult = new string[3];
+        private string _barCodeScanResult;
         public MainPage()
         {
             InitializeComponent();
@@ -22,38 +24,61 @@ namespace ProductCounter_Alpha_
         private void buttonTry_Clicked(object sender, EventArgs e)
         {
             DBOperator dBOperator = new DBOperator();
+            int tryToConnect = dBOperator.DBConnectCall();
 
-            connectionMessage.Text = dBOperator.DBConnectCall();
-            conMessFrame.BackgroundColor = Color.ForestGreen;
+            if(tryToConnect == 1)
+            {
+                conMessFrame.BackgroundColor = Color.DarkGreen;
+            }
+            else
+            {
+                conMessFrame.BackgroundColor = Color.DarkRed;
+            };
+            
         }
 
         private void ZXingScannerViev_OnScanResult(ZXing.Result result)
         {
-            Flashlight.TurnOnAsync();
+            //Flashlight.TurnOnAsync();
             DBOperator dBOperator = new DBOperator();
             Device.BeginInvokeOnMainThread(() =>
             {
-                string[] QuaryOperResult = dBOperator.QuerySenderCall(Convert.ToString(result));
-                quaryResult.Text = Convert.ToString(QuaryOperResult[0]);
-                remind.Text = Convert.ToString(QuaryOperResult[1]);
+
+                _barCodeScanResult = Convert.ToString(result);
+                _quaryOperResult = dBOperator.QuerySenderCall(_barCodeScanResult);
+                quaryResult.Text = Convert.ToString(_quaryOperResult[0]);
+                remind.Text = Convert.ToString(_quaryOperResult[1]);
+                difference.Text = _quaryOperResult[2];
             });
         }
 
-        public void Message(string position)
+        private void countBtn_Clicked(object sender, EventArgs e)
         {
-            Alerts(position);
+            if(quantityFact.Text != null)
+            {
+                DBOperator dBOperator = new DBOperator();
+                Alerts(dBOperator.CounterCall(quantityFact.Text));
+                difference.Text = dBOperator.QuerySenderCall(_barCodeScanResult)[2];
+            }
+            else
+            {
+                Alerts("Введите количество");
+            }
         }
 
-
-        public async void Alerts(string message)
+        private void exactlyBtn_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Topic", message, "OK");
+            exactlyBtn.BackgroundColor = Color.DarkGreen;
+            DBOperator dBOperator = new DBOperator();
+            Alerts(dBOperator.CounterCall(remind.Text));
+            difference.Text = dBOperator.QuerySenderCall(_barCodeScanResult)[2];
+            
         }
 
-        //private async void Button_Clicked(object sender, EventArgs e)
-        //{
-        //    await Flashlight.TurnOnAsync();
-        //}
+        private async void Alerts(string allertMess)
+        {
+            await DisplayAlert("Предупреждение", "Значение добавлено: " + allertMess, "Принято");
+        }
     }
 }
 
