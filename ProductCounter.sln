@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCounter(Alpha).Android", "ProductCounter(Alpha)\ProductCounter(Alpha).Android\ProductCounter(Alpha).Android.csproj", "{FE66B8E2-C4F8-4B6B-9E44-3612C8C06247}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCounter.Android", "ProductCounter\ProductCounter.Android\ProductCounter.Android.csproj", "{FE66B8E2-C4F8-4B6B-9E44-3612C8C06247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCounter(Alpha)", "ProductCounter(Alpha)\ProductCounter(Alpha)\ProductCounter(Alpha).csproj", "{864C3258-01AE-465E-A710-E651CF8DE80E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCounter", "ProductCounter\ProductCounter\ProductCounter.csproj", "{864C3258-01AE-465E-A710-E651CF8DE80E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

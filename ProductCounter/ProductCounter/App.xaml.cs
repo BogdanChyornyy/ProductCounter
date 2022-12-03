@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ProductCounter_Alpha_
+namespace ProductCounter
 {
     public partial class App : Application
     {
