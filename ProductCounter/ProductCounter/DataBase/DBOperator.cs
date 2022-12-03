@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using ZXing.QrCode.Internal;
 using ZXing;
 using Xamarin.Essentials;
+using ProductCounter.Views;
 
 namespace ProductCounter
 {
@@ -21,7 +22,7 @@ namespace ProductCounter
         private static string _barCodeCurrent;
         private string[] _extractedPosition = new string[3];
         public int message;
-
+                
         public string[] QuerySenderCall(string barCode)
         {
             _barCodeCurrent = barCode;
@@ -126,5 +127,6 @@ namespace ProductCounter
 
             return _difference;
         }
+        
     }    
 }
