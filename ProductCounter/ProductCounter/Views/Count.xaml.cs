@@ -1,45 +1,41 @@
-﻿using System;
+﻿using ProductCounter;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using ZXing;
 using ZXing.QrCode.Internal;
 
-namespace ProductCounter
+namespace ProductCounter.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class Count : ContentPage
     {
         private string[] _quaryOperResult = new string[3];
         private string _barCodeScanResult;
-        public MainPage()
+        public Count()
         {
             InitializeComponent();
         }
+        //private void buttonTry_Clicked(object sender, EventArgs e)
+        //{
+        //    DBOperator dBOperator = new DBOperator();
+        //    int tryToConnect = dBOperator.DBConnectCall();
 
-        private void buttonTry_Clicked(object sender, EventArgs e)
-        {
-            DBOperator dBOperator = new DBOperator();
-            int tryToConnect = dBOperator.DBConnectCall();
-
-            if(tryToConnect == 1)
-            {
-                conMessFrame.BackgroundColor = Color.DarkGreen;
-            }
-            else
-            {
-                conMessFrame.BackgroundColor = Color.DarkRed;
-            };
-            
-        }
+        //    if (tryToConnect == 1)
+        //    {
+        //        conMessFrame.BackgroundColor = Color.DarkGreen;
+        //    }
+        //    else
+        //    {
+        //        conMessFrame.BackgroundColor = Color.DarkRed;
+        //    };
+        //}
 
         private void ZXingScannerViev_OnScanResult(ZXing.Result result)
         {
-            //Flashlight.TurnOnAsync();
             DBOperator dBOperator = new DBOperator();
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -54,7 +50,7 @@ namespace ProductCounter
 
         private void countBtn_Clicked(object sender, EventArgs e)
         {
-            if(quantityFact.Text != null)
+            if (quantityFact.Text != null)
             {
                 DBOperator dBOperator = new DBOperator();
                 Alerts(dBOperator.CounterCall(quantityFact.Text));
@@ -72,7 +68,7 @@ namespace ProductCounter
             DBOperator dBOperator = new DBOperator();
             Alerts(dBOperator.CounterCall(remind.Text));
             difference.Text = dBOperator.QuerySenderCall(_barCodeScanResult)[2];
-            
+
         }
 
         private async void Alerts(string allertMess)
@@ -81,4 +77,3 @@ namespace ProductCounter
         }
     }
 }
-
