@@ -11,7 +11,7 @@ using ZXing.QrCode.Internal;
 using ZXing;
 using Xamarin.Essentials;
 
-namespace ProductCounter_Alpha_
+namespace ProductCounter
 {
     class DBOperator
     {

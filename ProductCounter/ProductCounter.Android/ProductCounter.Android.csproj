@@ -97,9 +97,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProductCounter(Alpha)\ProductCounter(Alpha).csproj">
-      <Project>{97F8100D-AD63-45F0-845E-E5C1FFA6123F}</Project>
-      <Name>ProductCounter(Alpha)</Name>
+    <ProjectReference Include="..\ProductCounter\ProductCounter.csproj">
+      <Project>{864C3258-01AE-465E-A710-E651CF8DE80E}</Project>
+      <Name>ProductCounter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

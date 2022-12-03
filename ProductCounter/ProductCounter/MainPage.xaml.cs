@@ -10,7 +10,7 @@ using Xamarin.Forms;
 using ZXing;
 using ZXing.QrCode.Internal;
 
-namespace ProductCounter_Alpha_
+namespace ProductCounter
 {
     public partial class MainPage : ContentPage
     {

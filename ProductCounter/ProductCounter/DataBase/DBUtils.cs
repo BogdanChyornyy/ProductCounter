@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySqlConnector;
 
-namespace ProductCounter_Alpha_
+namespace ProductCounter
 {
     class DBUtils
     {
