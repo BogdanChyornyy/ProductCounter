@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+       xmlns:ProductCounter="clr-namespace:ProductCounter" 
+       x:DataType="ProductCounter:AppViewModel"
+       x:Class="ProductCounter.AppShell"
+       xmlns:views="clr-namespace:ProductCounter.Views">
+
+    <TabBar>
+        <ShellContent
+            Title="Notes"
+            Icon="Count.png"
+            ContentTemplate="{DataTemplate views:Count}">            
+        </ShellContent>
+
+        <ShellContent
+            Title="Date"
+            Icon="Date.png"
+            ContentTemplate="{DataTemplate views:Date}">
+        </ShellContent>
+    </TabBar>
+</Shell>
