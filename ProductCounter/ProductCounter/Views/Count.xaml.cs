@@ -42,6 +42,9 @@ namespace ProductCounter.Views
 
                 _barCodeScanResult = Convert.ToString(result);
                 _quaryOperResult = dBOperator.QuerySenderCall(_barCodeScanResult);
+
+                scannerFrame.BackgroundColor = Color.Green;
+
                 quaryResult.Text = Convert.ToString(_quaryOperResult[0]);
                 remind.Text = Convert.ToString(_quaryOperResult[1]);
                 difference.Text = _quaryOperResult[2];

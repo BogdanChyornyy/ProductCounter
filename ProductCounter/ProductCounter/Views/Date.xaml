@@ -1,13 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProductCounter.Views.Date">
-    <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="Green">
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="ProductCounter.Views.Date"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    <FlexLayout
+        Direction="Column"
+        JustifyContent="SpaceBetween"
+        AlignItems="Center">
+        <Frame
+            x:Name="scannerFrame"
+            Padding="5"
+            HasShadow="True"
+            BorderColor="Black"
+            BackgroundColor="Red"
+            >
+            <zxing:ZXingScannerView 
+                IsScanning="True"
+                OnScanResult="ZXingScannerViev_OnScanResult"
+                WidthRequest="150"
+                HeightRequest="200"/>
+        </Frame>
+
+        <Frame
+                HasShadow="True"
+                BorderColor="Gray"
+                Margin="0, 5, 0, 5">
+            <Label
+                    x:Name="quaryResult"
+                    Text="Наименование позиции"
+                HorizontalTextAlignment="Center"
+                    FontSize ="18"
+                    FontAttributes="Bold"
+                TextColor="Black">
+            </Label>
+        </Frame>
+
+        <Button
+            x:Name="acceptDateBtn"
+            Text="Нажми если дата верна"
+            Clicked="acceptDateBtn_Clicked">
+            
+        </Button>
+
+        <DatePicker
+            x:Name="expDate"
+            Format="D"/>
+    </FlexLayout>
 </ContentPage>
